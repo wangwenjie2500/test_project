@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+	<!-- bootstrap -->
+</head>
+<body>
+挂载镜像&nbsp;&nbsp;:&nbsp;<select id="image" style="width:200px"><option value="null">选择要挂载的镜像</option>
+    <button type="button" >挂载镜像</button>
+</select>
+<button onclick="ejectMedia('{{ UUID }}')">挂载</button>
+
+<script type="text/javascript" src="{{url_for('static',filename='js/jquery-ui-1.10.4.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static',filename='js/jquery-1.8.3.min.js')}}"></script>
+<script>
+value = {"type":"getResourceImage"}
+obj = document.getElementById('image');
+$.ajax({
+        url:"http://192.168.201.23:8085/api/v0.1/crontrol",
+        contentType:"application/json;charset=utf-8",
+        type:"POST",
+        dataType:"json",
+        async:false,
+        data:JSON.stringify(value),
+        success:function (rdata){
+        for (i in rdata) {
+             obj.options.add(new Option(rdata[i],i));
+        }
+        }
+        })
+function ejectMedia(UUID){
+    img = document.getElementById('image').value;
+    if ( img == null ){
+        alert("please ");
+    } else {
+    value = {"type":"mountInstanceCdrom","data":{"UUID":UUID,"CDUUID":img}};
+    }
+
+    $.ajax({
+        url:"http://192.168.201.23:8085/api/v0.1/crontrol",
+        contentType:"application/json;charset=utf-8",
+        type:"POST",
+        dataType:"json",
+        async:false,
+        data:JSON.stringify(value),
+        success:function(rdata){
+            if (rdata['code'] == '200'){
+               data = 'mount ok';
+            } else {
+                data = 'mount faild';
+            };
+            alert(data);
+            window.parent.location.reload();
+            parent.layer.close(index);
+        }
+    })
+}
+</script>
+</body>
+</html>

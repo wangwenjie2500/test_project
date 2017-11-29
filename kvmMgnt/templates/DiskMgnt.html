@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="img/favicon.png">
+		<title>首页</title>
+		<!-- Bootstrap CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- bootstrap theme -->
+		<link href="css/bootstrap-theme.css" rel="stylesheet">
+		<!-- font icon -->
+		<link href="css/elegant-icons-style.css" rel="stylesheet" />
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		    <script src="js/jquery-ui-1.10.4.min.js"></script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <!-- bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!--<script src="js/jquery.nicescroll.js" type="text/javascript"></script>-->
+    <!--custome script for all page-->
+    <script src="js/scripts.js"></script>
+    <!-- custom script for this page-->
+    <script src="js/jquery.autosize.min.js"></script>
+		<!--&lt;!&ndash; Custom styles &ndash;&gt;-->
+		<!--<link href="css/widgets.css" rel="stylesheet">-->
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/style-responsive.css" rel="stylesheet" />
+		<link href="css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+		<script src=" extjs/global.js "></script>
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+		<!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+      <script src="js/lte-ie7.js"></script>
+    <![endif]-->
+	</head>
+
+	<body>
+		
+					<div class="row">
+						<div class="col-lg-12">
+							<h3 class="page-header"><i class="fa fa-laptop"></i> Home</h3>
+							<ol class="breadcrumb">
+								<li><i class="fa fa-home"></i>Home /存储卷 </li>
+							</ol>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h2><i class="fa fa-flag-o red"></i><strong>存储卷清单</strong></h2>
+									<div class="panel-actions">
+										<a href="#" title="刷新存储卷信息" class="btn-setting" ><i class="fa fa-rotate-right" onclick="infoFlush('diskRefer')"></i></a>
+										<!--<a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>-->
+										<!--<a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>-->
+									</div>
+								</div>
+								<div class="panel-body">
+										 <table class="table table-striped table-advance table-hover">
+                            <tbody>
+                            <tr>
+                                <th ><i class="icon_drive_alt "></i> 卷名称</th>
+                                <th ><i class="icon_calendar"></i> 状态</th>
+                                <th ><i class="icon_mail_alt"></i> 配置</th>
+                                <th ><i class="icon_pin_alt"></i> 挂载主机</th>
+                                <th ><i class="icon_cogs"></i> 操作</th>
+                            </tr>
+
+                            {% for domainObject in data %}
+                            <tr>
+                                <td>&nbsp; {{ domainObject.image }} </td>
+	                                 <td>{% if domainObject.status == "Y" %}
+							<font color="gree">已挂载</font>
+						{% else %}
+ 							<font color="red">未挂载</font>
+						{% endif %}
+
+					</td>
+                                    <td>
+                                        <div>已使用/未使用 : {{ domainObject.AllSize }}GB / {{ domainObject.UseSize }}GB</div>
+
+
+                                    </td>
+	                                 <td>{{ domainObject.Dhost }}</td>
+	                                 <td>
+								{% if loop.index > (loop.length|int - 3) %}
+	                                  <div class="btn-group dropup">
+								{% else %}
+									  <div class="btn-group">
+								{% endif %}
+                                        <button type="button" class="btn btn-default">操作</button>
+                                    <button type="button" class="btn btn-default dropdown-toggle"
+                                            data-toggle="dropdown">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">切换下拉菜单</span>
+                                    </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#" onclick="instanceCrontrol('{{domainObject.UUID}}','start')">修改</a></li>
+                                    <!--<li><a href="#">关闭</a></li>-->
+                                    <li><a href="#" onclick="instanceCrontrol('{{ domainObject.UUID }}','destroy')">删除</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">分离的链接</a></li>
+                                </ul>
+                                    </div>
+	                                      <!--<a class="btn btn-success" title="访问这个实例" href="{{ domainObject.url }}{{ domainObject.UUID }}" target="_blank"><i class="icon_mobile"></i> </a>-->
+	                                      <!--<a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>-->
+	                                  </div>
+	                                  </td>
+	                              </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+								</div>
+							</div>
+						</div>
+					</div>
+	    <!-- javascripts -->
+
+	</body>
+
+</html>

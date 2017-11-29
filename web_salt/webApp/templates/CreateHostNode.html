@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="img/favicon.png">
+		<title>添加节点</title>
+		<!-- Bootstrap CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- bootstrap theme -->
+		<link href="css/bootstrap-theme.css" rel="stylesheet">
+		<!-- font icon -->
+		<link href="css/elegant-icons-style.css" rel="stylesheet" />
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/style-responsive.css" rel="stylesheet" />
+		<link href="layui/css/layui.css" rel="stylesheet" />
+		<script src="js/jquery-1.8.3.min.js"></script>
+		<script src="layui/layui.js"></script>
+
+	</head>
+
+	<body>
+		<div class="row">
+			<div class="col-lg-12 col-xs-12">
+				<h3 class="page-header"><i class="fa fa-laptop"></i> Home</h3>
+				<ol class="breadcrumb">
+					<li><i class="fa fa-home"></i>Home / 节点 /添加节点 </li>
+				</ol>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12 col-xs-12">
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="panel-title">添加节点</div>
+					</div>
+					<div class="panel-body">
+						<!-- 示例-970 -->
+						<!--<ins class="adsbygoogle" style="display:inline-block;width:970px;height:90px" data-ad-client="ca-pub-6111334333458862" data-ad-slot="3820120620"></ins>-->
+
+						<!--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">-->
+							<!--<legend>方框风格的表单集合</legend>-->
+						<!--</fieldset>-->
+					<div class="layui-tab">
+                      <ul class="layui-tab-title">
+                        <li class="layui-this">添加节点</li>
+                      </ul>
+                      <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                          <form class="layui-form layui-form-pane" action="">
+
+								<div class="layui-form-item">
+								<label class="layui-form-label">节点IP</label>
+								<div class="layui-input-inline">
+									<input id="ip" lay-verify="required" value="" placeholder="请输入" autocomplete="off" class="layui-input" type="text">
+								</div><button class="layui-btn layui-btn-primary" onclick="nodeConnectTest()">连接测试</button><font style="display:online" id="testInfo"></font>
+							</div>
+							<div class="layui-form-item" style="width:300px;">
+								<label class="layui-form-label">虚拟化类型</label>
+								<div class="layui-input-block">
+									<select id='type' name="interest" lay-filter="aihao">
+										<option value="none"></option>
+										<option value="kvm">kvm</option>
+										<option value="hyperv">hyper-v</option>
+									</select>
+								</div>
+							</div>
+
+
+							<div class="layui-form-item layui-form-text">
+								<label class="layui-form-label">备注信息</label>
+								<div class="layui-input-block">
+									<textarea id='info' placeholder="请输入内容" class="layui-textarea"></textarea>
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<button class="layui-btn" lay-submit="" lay-filter="demo2" onclick="addNode()">添加</button>
+							</div>
+							  <script>
+                        	
+				function serverConnectPost(data){
+               var value = data;
+               var rcode = " ";
+               $.ajax({
+            url:"http://10.31.29.177:8085/api/v0.1/crontrol",
+          contentType:"application/json;charset=utf-8",
+          type:"POST",
+           dataType:"json",
+          async:false,
+          data:JSON.stringify(value),
+           success:function (rdata){
+            rcode = rdata
+       		 }
+   				 });
+    		return rcode
+	 		}
+             function addNode(){
+             	window.parent.zhezhao1();
+            	ip = document.getElementById('ip').value;
+            	type = document.getElementById('type').value;
+            	info = document.getElementById('info').value;
+            	data = {"type":"NodeAdd","data":{"ip":ip,"type":type,"info":info}}
+            	f = serverConnectPost(data)
+            	if (f['code'] == 200) {
+            		alert('节点添加成功');
+            	} else {
+            		alert('节点添加失败');
+            	}
+            	window.parent.zhezhao1();
+         		window.location.reload();
+             }
+			function nodeConnectTest(){
+                   ip = document.getElementById('ip').value;
+        	 	   type = document.getElementById('type').value;
+        	 	   if (type == 'null') {
+        	 	   alert("请选择节点虚拟化类型");
+        	 	   }else {
+                      data = {"type":"NodeConnectTest","data":{"address": ip}}
+                      f = serverConnectPost(data)
+                      if ( f['code'] == 200){
+                          document.getElementById('testInfo').innerHTML = "connected successful";
+                          document.getElementById('testInfo').color = 'green';
+                      } else {
+                          document.getElementById('testInfo').innerHTML = "connected faild";
+                          document.getElementById('testInfo').color = 'red';
+                      }
+                      }
+			}
+
+							  </script>
+						</form>
+							<script>
+			layui.use(['form', 'layedit', 'laydate'], function() {
+				var form = layui.form,
+					layer = layui.layer,
+					layedit = layui.layedit,
+					laydate = layui.laydate;
+				//创建一个编辑器
+				var editIndex = layedit.build('LAY_demo_editor');
+
+
+			});
+		</script>
+                        </div>
+
+                      </div>
+                    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+	</body>
+
+</html>

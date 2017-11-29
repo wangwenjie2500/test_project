@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="img/favicon.png">
+		<title>虚拟化管理平台</title>
+		 <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <!-- font icon -->
+    <link href="css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />    
+    <!-- Custom styles -->
+		<link href="css/widgets.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet" />
+		<link href="css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+      <script src="js/lte-ie7.js"></script>
+       <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+  <!-- container section start -->
+  <section id="container" class="">
+     
+      
+      <header class="header dark-bg">
+            <div class="toggle-nav">
+                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
+            </div>
+
+            <!--logo start-->
+            <a href="index.html" class="logo"><span>虚拟化管理平台</span></a>
+            <!--logo end-->
+
+            <div class="nav search-row" id="top_menu">
+                <!--  search form start -->
+                <ul class="nav top-menu">                    
+                    <li>
+                        <form class="navbar-form">
+                            <input class="form-control" placeholder="Search" type="text">
+                        </form>
+                    </li>                    
+                </ul>
+                <!--  search form end -->                
+            </div>
+
+            <div class="top-nav">                
+                <!-- notificatoin dropdown start-->
+                <ul class="nav pull-right top-menu">
+                    
+                    <!-- user login dropdown start-->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="profile-ava">
+                                <img alt="" src="img/avatar1_small.jpg">
+                            </span>
+                            <span class="username">{{ data['user'] }}</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu extended logout">
+                            <div class="log-arrow-up"></div>
+                            <li class="eborder-top">
+                                <a href="#"><i class="icon_profile"></i> 我的资料</a>
+                            </li>
+                            <li>
+                                <a href="/logout"><i class="icon_key_alt"></i> 退出</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- user login dropdown end -->
+                </ul>
+                <!-- notificatoin dropdown end-->
+            </div>
+      </header>      
+      <!--header end-->
+
+      <!--sidebar start-->
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu">                
+                  <li class="active">
+                      <a class="" href="#" onclick="pageSwitch('console')">
+                          <i class="icon_house_alt" ></i>
+                          <span>控制台</span>
+                      </a>
+                  </li>
+				 					<li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon_document_alt"></i>
+                          <span>集群</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+                                        <ul class="sub">
+					  <li><a class="" href="#" onclick="pageSwitch('clusterMgnt')">节点</a></li>
+					  <li><a class="" href="#">存储</a></li>
+						  <li><a class="" href="#">网络</a></li>
+					  </ul>
+                  </li>
+                 <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon_desktop"></i>
+                          <span>实例</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+					 <ul class="sub">
+					  <li><a class="" href="#" onclick="pageSwitch('instanceMgnt')">实例清单</a></li>
+                         <li><a class="" href="#" onclick="pageSwitch('createDomain')" >创建实例</a></li>
+					  </ul>
+                      <!--<ul class="sub">-->
+                          <!--<li><a class="" href="equipmentManagement.html">云主机</a></li>-->
+                          <!--<li><a class="" href="equipmentManagement.html">安全设备</a></li>-->
+                      <!--</ul>-->
+                  </li>
+                   <li class="sub-menu">
+                      <a class="#" href="#">
+                          <i class="icon_genius"></i>
+						  <span>存储卷</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+                      <ul class="sub">
+                      	<li><a class="" href="#" onclick="pageSwitch('diskMgnt')">存储卷清单</a></li>
+                      	<li><a class="" href="#">创建存储库</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a class="#" href="#">
+                          <i class="icon_toolbox"></i>
+						  <span>设置</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+                      <ul class="sub">
+                      	<!--<li><a class="" href="#" onclick="pageSwitch('domainConfig')">服务方案</a></li>-->
+                      	<li><a class="" href="#" onclick="pageSwitch('userInterface')">用户管理</a></li>
+			<li><a class="" href="#">系统设置</a></li>
+			<li><a class="" href="#">模板管理</a></li>
+                      </ul>
+                  </li>
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      <!--sidebar end-->
+      
+      <!--main content start-->
+	<section id="main-content">
+				<section class="wrapper">
+					<!--overview start-->
+
+					<iframe id="list" onload="iFrameHeight()" src="/consoleTop" frameborder="0" width="100%" style="overflow-x:hidden;" marginheight="0" marginwidth="0" scrolling="no"></iframe>
+				</section>
+			</section>
+		</section>
+  	<div id="zhezhao" class="zhezhao" hidden="hidden">
+			<div class="fanzhuan"></div>
+		</div>
+  <script>
+
+			function zhezhao1(){
+
+			$("#zhezhao").toggle();
+			}
+			function zhezhao2(){
+			$("#zhezhao").hidden();
+			}
+			var menuRight = function() {
+				$("#menu-right").toggle();
+			}
+
+			//iframe自适应
+			function iFrameHeight() {
+					var ifm = document.getElementById("list");
+		            var bodyIndex = document.body.offsetHeight;
+		            var bodyHeight = bodyIndex - 300;
+		            var subWeb = document.frames ? document.frames["list"].document : ifm.contentDocument;
+		            if(ifm != null && subWeb != null) {
+			            ifm.height = 0 + "px";
+			            ifm.width = subWeb.body.scrollWidth;
+			            if(screen.height<1080) {//判断屏幕高度的分辨率
+				            if(subWeb.body.scrollHeight > bodyIndex) {//判断iframe内容的高度是否大于body的高度
+					            ifm.height = subWeb.body.scrollHeight + "px";
+				            } else {
+			                    ifm.height = bodyIndex - 60 + "px"
+				                    }
+			                } else {
+				                if(subWeb.body.scrollHeight < bodyHeight) {
+					                ifm.height = bodyIndex - 60 + "px"
+				                    } else {
+					                    ifm.height = subWeb.body.scrollHeight + "px";
+				                            }
+			}
+		}
+};
+		</script>
+      <!--main content end-->
+  <!-- javascripts -->
+	<script src="js/jquery-ui-1.10.4.min.js"></script>
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<!-- bootstrap -->
+	<script src="extjs/global.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+	<!--custome script for all page-->
+	<script src="js/scripts.js"></script>
+	<!-- custom script for this page-->
+	<script src="js/jquery.autosize.min.js"></script>
+    <script src="extjs/layer.js"></script>
+  <script>
+
+  </script>
+  </body>
+</html>

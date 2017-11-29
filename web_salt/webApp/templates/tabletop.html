@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="img/favicon.png">
+		<title>桌面home</title>
+		<!-- Bootstrap CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- bootstrap theme -->
+		<link href="css/bootstrap-theme.css" rel="stylesheet">
+		<!-- font icon -->
+		<link href="css/elegant-icons-style.css" rel="stylesheet" />
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<!--content-->
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/style-responsive.css" rel="stylesheet" />
+		<!--日程-->
+		 <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+		<link href="fullcalendar/fullcalendar.css" />
+		<script src="js/jquery-1.8.3.min.js"></script>
+			<!-- chartjs -->
+			<script src="js/echarts.js"></script>
+			<!--日程-->
+			<script src="laydate/laydate.js"></script>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+		<!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+      <script src="js/lte-ie7.js"></script>
+    <![endif]-->
+	</head>
+
+	<body>
+		<div class="row">
+			<div class="col-lg-12 col-xs-12">
+				<h3 class="page-header"><i class="fa fa-laptop"></i> Home</h3>
+				<ol class="breadcrumb">
+					<li><i class="fa fa-home"></i>Home /控制台 </li>
+				</ol>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-9 col-xs-9">
+				<section class="panel panel-primary">
+					<div class="panel-heading">
+						资源信息
+					</div>
+					<div class="panel-body">
+						<div class="col-lg-6 col-xs-6">
+							<section class="panel panel-warning">
+								<div class="panel-heading">
+									实例信息
+								</div>
+								<div class="panel-content">
+									<div class="row">
+										<div class="col-lg-6 col-xs-6">
+											<div class="wdzy">
+												<p style="font-size: 48px;" id="instance">0</p>
+												<p>实例</p>
+											</div>
+										</div>
+										<div class="col-lg-6 col-xs-6" style="border-left: 1px dashed #DDDCDC;">
+											<p><i class="fa fa-circle" style="color: #00CC99;-moz-box-shadow: 0px 0px 10px #FFFFFF;box-shadow: 0px 0px 10px #FFFFFF;" aria-hidden="true"></i> 运行&nbsp;&nbsp;<font id="alive_instance" color="#00CC99">10</font> </p>
+											<p><i class="fa fa-circle" style="color: #B8B8B8;" aria-hidden="true"></i> 关闭 &nbsp;&nbsp;<font id="down_instance" color="#B8B8B8">10</font></p>
+										</div>
+
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-lg-6 col-xs-6">
+							<section class="panel panel-success">
+								<div class="panel-heading">
+									物理节点
+								</div>
+								<div class="panel-content">
+									<div class="row">
+										<div class="col-lg-6 col-xs-6">
+											<div class="wdzy">
+												<p style="font-size: 48px;" id="node">0</p>
+												<p>节点信息</p>
+											</div>
+										</div>
+										<div class="col-lg-6 col-xs-6" style="border-left: 1px dashed #DDDCDC;">
+											<p><i class="fa fa-circle" style="color: #00CC99;-moz-box-shadow: 0px 0px 10px #FFFFFF;box-shadow: 0px 0px 10px #FFFFFF;" aria-hidden="true"></i> 在线&nbsp;&nbsp;<font id="alive_node" color="#00CC99">10</font></p>
+											<p><i class="fa fa-circle" style="color: #B8B8B8;" aria-hidden="true"></i> 离线 &nbsp;&nbsp;<font id="faild_node" color="#00CC99">10</font></p>
+											<script>
+											//function serverConnect(data) {
+											//		var value = data
+											//		var returnCode = " ";
+											//		$.ajax({
+											//			url:"http://192.168.201.23:8085/api/v0.1/crontrol",
+											//			contentType:"application/json;charset=utf-8",
+											//			type:"POST",
+											//			dataType:"json",
+											//			async:false,
+											//			data:JSON.stringify(value),
+											//			success:function (rdata){
+											//				returnCode = rdata
+											//			}
+											//			});
+											//			return returnCode
+											//			}
+											//			function getInfo(){
+											//		data = {"type":"getResourceNumber"}
+												//	returnCode = serverConnect(data);
+											//		document.getElementById('alive_instance').innerHTML = returnCode['instanceAlive'];
+											//		document.getElementById('down_instance').innerHTML = returnCode['instanceFaild'];
+											//		document.getElementById('instance').innerHTML = returnCode['instanceFaild'] + returnCode['instanceAlive'];
+											//		document.getElementById("alive_node").innerHTML = returnCode['nodeAlive'];
+											//		document.getElementById("faild_node").innerHTML = returnCode['nodeFaild'];
+											//		document.getElementById('node').innerHTML = returnCode['nodeAlive'] + returnCode['nodeFaild'];
+												//	}
+												//	getInfo();
+
+
+											</script>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-lg-6 col-xs-6">
+							<section class="panel panel-warning">
+								<div class="panel-heading">
+									存储池
+								</div>
+								<div class="panel-content">
+									<div class="row">
+										<div class="col-lg-6 col-xs-6">
+											<div class="wdzy">
+												<p style="font-size: 48px;">0</p>
+												<p>存储信息</p>
+											</div>
+										</div>
+										<div class="col-lg-6 col-xs-6" style="border-left: 1px dashed #DDDCDC;">
+											<p><i class="fa fa-circle" style="color: #00CC99;-moz-box-shadow: 0px 0px 10px #FFFFFF;box-shadow: 0px 0px 10px #FFFFFF;" aria-hidden="true"></i> 在线</p>
+											<p><i class="fa fa-circle" style="color: #B8B8B8;" aria-hidden="true"></i> 离线</p>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-lg-6 col-xs-6">
+							<section class="panel panel-success">
+								<div class="panel-heading">
+									网络
+								</div>
+								<div class="panel-content">
+									<div class="row">
+										<div class="col-lg-6 col-xs-6">
+											<div class="wdzy">
+												<p style="font-size: 48px;">0</p>
+												<p>云服务器</p>
+											</div>
+										</div>
+										<div class="col-lg-6 col-xs-6" style="border-left: 1px dashed #DDDCDC;">
+											<p><i class="fa fa-circle" style="color: #00CC99;" aria-hidden="true"></i> 运行中</p>
+											<p><i class="fa fa-circle" style="color: #B8B8B8;" aria-hidden="true"></i> 近期创建</p>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</section>
+				<section class="panel">
+					<header class="panel-heading">
+						Bar
+					</header>
+					<div class="panel-body text-center">
+						<canvas id="main" height="300" width="800"></canvas>
+					</div>
+				</section>
+
+			</div>
+			<div class="col-lg-3 col-xs-3">
+				<div class="row">
+					<div class="col-lg-12 col-xs-12">
+						<section class="panel panel-info">
+							<div class="panel-heading">
+								日历
+							</div>
+							<div class="panel-content">
+								<div id="laydate"></div>
+							</div>
+						</section>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12 col-xs-12">
+						<section class="panel panel-info">
+							<div class="panel-heading">
+								近期操作
+							</div>
+							<div class="panel-content jqcz">
+								<p><i class="fa fa-calendar-o" style="color: #00CC99;" aria-hidden="true"></i><span>2017-09-20</span>启动了一个服务器啊</p>
+								<p><i class="fa fa-calendar-o" style="color: #B8B8B8;" aria-hidden="true"></i><span>2017-09-20</span>关闭了一个服务器啊</p>
+								<p><i class="fa fa-calendar-o" style="color: #FF0066;" aria-hidden="true"></i><span>2017-09-20</span>添加了一个服务器啊</p>
+								<p><i class="fa fa-calendar-o" style="color: #CCFF00;" aria-hidden="true"></i><span>2017-09-20</span>移除了一个服务啊器</p>
+								<p><i class="fa fa-calendar-o" style="color: #00CC99;" aria-hidden="true"></i><span>2017-09-20</span>启动了一个服务啊器</p>
+								<p><i class="fa fa-calendar-o" style="color: #B8B8B8;" aria-hidden="true"></i><span>2017-09-20</span>关闭了一个服啊务器</p>
+								<p><i class="fa fa-calendar-o" style="color: #FF0066;" aria-hidden="true"></i><span>2017-09-20</span>添加了一个服务啊器</p>
+								<p><i class="fa fa-calendar-o" style="color: #CCFF00;" aria-hidden="true"></i><span>2017-09-20</span>移除了一个服务啊器</p>
+								<p><i class="fa fa-calendar-o" style="color: #00CC99;" aria-hidden="true"></i><span>2017-09-20</span>启动了一个服务啊器</p>
+								<p><i class="fa fa-calendar-o" style="color: #B8B8B8;" aria-hidden="true"></i><span>2017-09-20</span>关闭了一个服务啊器</p>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+	</body>
+
+</html>
